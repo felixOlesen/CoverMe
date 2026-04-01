@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/UI/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=6784ff0a4fd534fe791c64f8cdd565b5&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="MainContainer" style="flex-grow: 1; align-self: stretch; justify-content: center; align-content: auto; background-color: rgb(55, 55, 55); align-items: center;">
+        <ui:Label text="COVER ME!" name="MenuTitle" style="-unity-text-align: upper-center; font-size: 50px; -unity-font-style: bold; margin-top: 0; color: rgb(221, 221, 221); margin-right: 0; margin-bottom: 30px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; align-content: center; align-items: center; justify-content: flex-start; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; align-self: center; height: auto; max-height: 50%;">
+            <ui:Button text="START" name="StartButton" class="MainMenuButtons"/>
+            <ui:Button text="SETTINGS" name="SettingsButton" class="MainMenuButtons"/>
+            <ui:Button text="EXIT" name="ExitButton" class="MainMenuButtons"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
