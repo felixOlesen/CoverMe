@@ -19,6 +19,13 @@ public class MainMenuController : MonoBehaviour
         settingsButton = rootVisualElement.Q<Button>("SettingsButton");
         exitButton = rootVisualElement.Q<Button>("ExitButton");
 
+        if(startButton != null) 
+        {
+            startButton.Focus();
+        }
+    }
+
+    void OnEnable() {
         startButton.clicked += OnStartButtonClicked;
         settingsButton.clicked += OnSettingsButtonClicked;
         exitButton.clicked += OnExitButtonClicked;
@@ -26,23 +33,22 @@ public class MainMenuController : MonoBehaviour
 
     private void OnStartButtonClicked() {
         Debug.Log("Start Button Clicked");
-        SceneManager.LoadScene("MainLoop"); 
+        SceneManager.LoadScene("MainLoop");
     }
 
     private void OnSettingsButtonClicked() {
         Debug.Log("Settings Button Clicked");
-        // Open the settings menu or navigate to the settings screen here
     }
 
     private void OnExitButtonClicked() {
         Debug.Log("Exit Button Clicked");
-        // Exit the application
         Application.Quit();
     }
 
-    void OnDestroy() {
+    void OnDisable() {
         startButton.clicked -= OnStartButtonClicked;
         settingsButton.clicked -= OnSettingsButtonClicked;
         exitButton.clicked -= OnExitButtonClicked;
     }
+
 }
