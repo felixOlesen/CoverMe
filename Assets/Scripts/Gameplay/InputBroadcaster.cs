@@ -32,26 +32,19 @@ public class InputBroadcaster : MonoBehaviour
 
     // Player Interaction Methods
     void OnMove(InputValue inputValue)  {
-        Debug.Log($"Dispatching movement input: {inputValue.Get<Vector2>()} at position {transform.position}");
         OnMoveEvent?.Invoke(inputValue);
     }
 
     void OnLook(InputValue inputValue)  {
-        // Handle look input if needed
         OnLookEvent?.Invoke(inputValue);
-        Debug.Log($"Dispatching look input: {inputValue.Get<Vector2>()} at position {transform.position}");
     }
 
     void OnAttack(InputValue inputValue)  {
-        // Handle attack input if needed
         OnAttackEvent?.Invoke(inputValue);
-        Debug.Log($"Dispatching attack input");
     }
 
     void OnInteract(InputValue inputValue)  {
-        // Handle interact input if needed
         OnInteractEvent?.Invoke(inputValue);
-        Debug.Log($"Dispatching interact input");
     }
 
     void OnCrouch(InputValue inputValue)  {
