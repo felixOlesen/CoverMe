@@ -7,6 +7,7 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] public float maxHealth = 100f;
     [SerializeField] public float moveSpeed = 2f;
     [SerializeField] public float rotationSpeed = 2f;
+    [SerializeField] public float attackCooldown = 1.5f;
 
     [Header("References")]
     public Rigidbody2D EntityRB { get; set; }

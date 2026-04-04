@@ -76,7 +76,7 @@ public class PatrollingState : HeroState
         }
     }
 
-    public void HandleCollision(HeroController hero, Collision2D collision)
+    public void HandleCollisionEnter(HeroController hero, Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Projectile")) {
             LevelManager.Instance.HandleProjectileHit(collision.gameObject);
@@ -90,12 +90,20 @@ public class PatrollingState : HeroState
         }
     }
 
-    public void HandleTrigger(HeroController hero, Collider2D collider)
+    public void HandleCollisionExit(HeroController hero, Collision2D collision) {
+        // Implement logic for when the hero exits a collision (e.g., stop taking damage, etc.)
+    }
+
+    public void HandleTriggerEnter(HeroController hero, Collider2D collider)
     {
         if(collider.gameObject.CompareTag("BadGuy")) {
-            hero.SetTargetEnemy(collider.gameObject);
+            hero.nearbyEnemies.Add(collider.transform);
             hero.SwitchState(HeroController.HeroStateLabel.Attacking);
         }
+    }
+
+    public void HandleTriggerExit(HeroController hero, Collider2D collider) {
+        // Implement logic for when the hero exits a trigger (e.g., stop detecting player proximity, etc.)
     }
 
     private void HandleTurning(HeroController hero) {
