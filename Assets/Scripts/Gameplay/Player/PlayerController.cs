@@ -1,48 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
-    // Steps to implement:
-    // 1. Subscribe to InputBroadcaster events in OnEnable and unsubscribe in OnDisable
-    // 2. Implement event handlers for each input event (e.g., HandleMove, HandleLook, etc.)
-    // 3. In each handler, update the player's state or trigger animations based on the input received
-    // 4. Ensure that the player's movement and actions are responsive and smooth by using Time.deltaTime for movement calculations
-    // 5. Test the implementation in the Unity Editor to ensure that the player responds correctly to all input events and that there are no
 
-    // Implement Shooting Mechanism
-    // Implement Movement Mechanics
-    // Add a collider
-    // Implement Health System
     [SerializeField] private Camera mainCamera;
     private bool lookingForMouse;
     private Vector2 mousePosition;
 
     private Vector2 moveInput;
-    [SerializeField]
-    private float moveSpeed = 5f;
-    private Rigidbody2D rb;
-    private Rigidbody2D container_rb;
-
-    [SerializeField]
-    private GameObject playerContainer;
-
-    [SerializeField]
-    private float health = 100f;
-    [SerializeField]
-    private float maxHealth = 100f;
-    [SerializeField]
-    private GameObject healthBar; 
-
 
     void Awake() {
-        
-
         if (mainCamera == null) mainCamera = Camera.main;
         lookingForMouse = true;
-        rb = GetComponent<Rigidbody2D>();
-        container_rb = playerContainer.GetComponent<Rigidbody2D>();
-
+        EntityRB = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Start() {
@@ -51,13 +22,13 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
-        RotateTowardsMouse();
     }
 
     void FixedUpdate() {
         // Handle physics-based movement here if needed
+        RotateTowardsMouse();
         Vector2 targetVelocity = moveInput * moveSpeed;
-        container_rb.linearVelocity = targetVelocity;
+        EntityRB.linearVelocity = targetVelocity;
 
     }
 
@@ -98,11 +69,12 @@ public class PlayerController : MonoBehaviour
 
 
     void RotateTowardsMouse() {
+        // Use rigidbody physics to rotate towards the mouse position
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mainCamera.transform.position.y - transform.position.y));
-        mouseWorldPosition.z = transform.position.z;
-        Vector3 direction = mouseWorldPosition - transform.position;
-        transform.up = direction;
-
+        Vector2 direction = (Vector2)mouseWorldPosition - EntityRB.position;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        targetAngle -= 90f; // Adjust if your sprite faces up instead of right
+        EntityRB.MoveRotation(targetAngle);
     }
 
 }

@@ -8,11 +8,13 @@ TagManager:
   - GoodGuy
   - BadGuy
   - Projectile
+  - Wall
+  - Detector
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
   - 
